@@ -1,7 +1,5 @@
 function Get-folders()
-
 {
-
 param (
 
     [Parameter(Mandatory=$true,Position=0)]
@@ -10,7 +8,6 @@ param (
     [string]$OriginalLibrary,
     [Parameter(Mandatory=$true,Position=2)]
     [string]$DestinationLibrary
-
     )
 
     $Host.Runspace.ThreadOptions = “ReuseThread”
@@ -18,7 +15,6 @@ param (
     
     foreach($foolder in $foolders)
     {
-
         $ctx.Load($foolder.Folders)
         $ctx.ExecuteQuery()
         #Write-host $foolder.ServerRelativeUrl $foolder.folders.count
