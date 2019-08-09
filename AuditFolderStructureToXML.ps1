@@ -1,8 +1,6 @@
 function Get-folders()
 {
-
-param (
-
+    param (
     [Parameter(Mandatory=$true,Position=0)]
     $higherLevelFolder,
     [Parameter(Mandatory=$true,Position=1)]
@@ -30,11 +28,11 @@ param (
 
 function Get-Webfolders()
 {
-param (
+    param (
     #title of the library you are auditing
     [Parameter(Mandatory=$true,Position=0)]
     [string]$OriginalLibrary
-)
+    )
 
     $Host.Runspace.ThreadOptions = “ReuseThread”
 
