@@ -1,6 +1,5 @@
 function Get-folders()
 {
-
 param (
 
     [Parameter(Mandatory=$true,Position=0)]
@@ -25,7 +24,6 @@ param (
         Get-folders -higherLevelFolder $lowerLevelFolder -OriginalLibrary $OriginalLibrary 
     }
 }
-
 
 
 function Get-Webfolders()
@@ -68,10 +66,8 @@ function Create-XML()
      $xmlWriter.WriteStartElement('Folders')
      $xmlWriter.Flush()
      $xmlWriter.Close()
-
      $xmlDoc = [System.Xml.XmlDocument](Get-Content $XMLPath);
-     $xmlDoc.Save($XMLPath)
-    
+     $xmlDoc.Save($XMLPath)    
 }
 
 
@@ -190,8 +186,5 @@ Get-Webfolders -OriginalLibrary $libraryTitle -ErrorAction Continue
 
 #optional
 Write-Output $global:foldersCollection
-
-
-
 
 
