@@ -150,7 +150,6 @@ param (
     [string]$Url,
     [Parameter(Mandatory=$true,Position=3)]
     $AdminPassword
-
     )
 
     $global:ctx=New-Object Microsoft.SharePoint.Client.ClientContext($Url)
