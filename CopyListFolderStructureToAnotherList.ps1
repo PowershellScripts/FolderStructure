@@ -3,7 +3,7 @@ function Get-folders()
 param (
 
     [Parameter(Mandatory=$true,Position=0)]
-    $foolders,
+    $Folders,
     [Parameter(Mandatory=$true,Position=1)]
     [string]$OriginalLibrary,
     [Parameter(Mandatory=$true,Position=2)]
@@ -13,25 +13,25 @@ param (
     $Host.Runspace.ThreadOptions = “ReuseThread”
     $ll2=$ctx.Web.Lists.GetByTitle($DestinationLibrary.Replace("/",""))
     
-    foreach($foolder in $foolders)
+    foreach($folder in $folders)
     {
-        $ctx.Load($foolder.Folders)
+        $ctx.Load($folder.Folders)
         $ctx.ExecuteQuery()
-        #Write-host $foolder.ServerRelativeUrl $foolder.folders.count
+        #Write-host $folder.ServerRelativeUrl $folder.folders.count
 
-        if($foolder.ServerRelativeUrl -match $OriginalLibrary)
+        if($folder.ServerRelativeUrl -match $OriginalLibrary)
         {
-            $urel= $foolder.ServerRelativeUrl.Replace($OriginalLibrary,$DestinationLibrary)
+            $urel= $folder.ServerRelativeUrl.Replace($OriginalLibrary,$DestinationLibrary)
             Write-Host $urel
-            $newFolder=$ll2.RootFolder.Folders.Add($foolder.ServerRelativeUrl.Replace($OriginalLibrary,$DestinationLibrary))
+            $newFolder=$ll2.RootFolder.Folders.Add($folder.ServerRelativeUrl.Replace($OriginalLibrary,$DestinationLibrary))
             $ctx.Load($newFolder)
             $ctx.ExecuteQuery()
         }
 
 
-        if($foolder.Folders.Count -gt 0)
+        if($folder.Folders.Count -gt 0)
         {
-            Get-folders -foolders $foolder.Folders -OriginalLibrary $OriginalLibrary -DestinationLibrary $DestinationLibrary
+            Get-folders -Folders $folder.Folders -OriginalLibrary $OriginalLibrary -DestinationLibrary $DestinationLibrary
         }
 
     }
@@ -81,7 +81,7 @@ param (
 
 
         if($fodler.Folders.Count -gt 0){
-        Get-folders -foolders $fodler.Folders -OriginalLibrary $OriginalLibrary -DestinationLibrary $DestinationLibrary
+        Get-folders -folders $fodler.Folders -OriginalLibrary $OriginalLibrary -DestinationLibrary $DestinationLibrary
         }
     }
 }
