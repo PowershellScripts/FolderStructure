@@ -89,22 +89,19 @@ param (
 
 function Connect-SPO()
 {
+    param (
+        [Parameter(Mandatory=$true,Position=1)]
+        [string]$Username,
+        [Parameter(Mandatory=$true,Position=2)]
+        [string]$Url,
+        [Parameter(Mandatory=$true,Position=3)]
+        $AdminPassword
+        )
 
-param (
-
-    [Parameter(Mandatory=$true,Position=1)]
-    [string]$Username,
-    [Parameter(Mandatory=$true,Position=2)]
-    [string]$Url,
-    [Parameter(Mandatory=$true,Position=3)]
-    $AdminPassword
-
-    )
-
-    $global:ctx=New-Object Microsoft.SharePoint.Client.ClientContext($Url)
-    $ctx.Credentials = New-Object Microsoft.SharePoint.Client.SharePointOnlineCredentials($Username, $AdminPassword)
-    $ctx.Load($ctx.Web)
-    $ctx.ExecuteQuery()
+        $global:ctx=New-Object Microsoft.SharePoint.Client.ClientContext($Url)
+        $ctx.Credentials = New-Object Microsoft.SharePoint.Client.SharePointOnlineCredentials($Username, $AdminPassword)
+        $ctx.Load($ctx.Web)
+        $ctx.ExecuteQuery()
 
 }
 
